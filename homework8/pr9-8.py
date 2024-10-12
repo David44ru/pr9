@@ -22,3 +22,27 @@ def user_selection(ticket):
             except ValueError:
                 print("Пожалуйста, введите правильное число.")
     return user_numbers
+
+def random_selection(ticket):
+    return [random.choice(row) for row in ticket]
+
+
+while True:
+
+    user_numbers = user_selection(ticket)
+
+
+    random_numbers = random_selection(ticket)
+
+    matches = len(set(user_numbers) & set(random_numbers))
+
+
+    print("\nВаш выбор:", user_numbers)
+    print("Выбор программы:", random_numbers)
+    print(f"Количество совпадений: {matches}")
+
+
+    answer = input("Вы хотите сыграть еще раз? да/нет: ").lower()
+    if answer != "да":
+        print("Спасибо за игру!")
+        break
