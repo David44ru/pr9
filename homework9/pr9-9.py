@@ -1,20 +1,16 @@
 import re
 
-# Регулярное выражение для разделения email на имя пользователя и домен
-email_pattern = r"^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)$"
+# Ввод email
+email = input("Введите ваш email: ")
 
-# Функция для парсинга email
-def parse_email(email):
-    match = re.match(email_pattern, email)
-    if match:
-        username, domain = match.groups()
-        return username, domain
-    else:
-        return None
+# Регулярное выражение для разбора email
+pattern = r'(?P<username>[\w\.-]+)@(?P<domain>[\w\.-]+)'
 
-# Цикл для повтора программы
-while True:
-    # Ввод email пользователя
-    email = input("Введите ваш email: ")
+match = re.match(pattern, email)
 
-    
+if match:
+    username = match.group('username')
+    domain = match.group('domain')
+    print(f"username: {username}, domain: {domain}")
+else:
+    print("Некорректный email.")
